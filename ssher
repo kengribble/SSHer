@@ -1,0 +1,60 @@
+#!/usr/bin/perl
+#
+#
+use strict;
+use vars qw($opt_f $opt_l $opt_v $verbose $command @nodes);
+use warnings;
+use Getopt::Std;
+use Data::Dumper qw(Dumper);
+use Net::Ping;
+if ($ARGV[0] eq "" || $ARGV[0] eq "-h" || $ARGV[0] eq "--help") {
+	    print "$0 useage:\n$0 [-v] -f file [-l login] command \n"; 
+	    print "-v is verbose output \n"; 
+	    print "-f is a file name with a required list of IP addresses or hostnames in that file\n"; 
+	    print "   command is the required command to send to the list of nodes with ssh\n";
+	    print "-l is a login name - if not used the login name of the user executing the command is used\n"; 
+	    exit();
+}
+
+getopts('vl:f:');
+if ($opt_v){ 
+	    $verbose = 1 ;
+	    print "Verbose mode on($verbose)\n";
+}
+if ($opt_f){ 
+	    print "File mode on($opt_f)\n" if $verbose;
+}
+my $file = $opt_f ;
+my $login = "";
+if ($opt_l){ 
+            $login = "$opt_l\@"; 
+	    print "Login mode on($login)\n" if $verbose;
+}
+
+$command = join(" ",@ARGV);
+
+# Gather a file of machines
+open (FILE, "$file") or die "cannot open $file: $!\n";
+while (<FILE>) {
+	chomp;
+	next if /#/;
+	push @nodes, $_;
+}
+close (FILE);
+print Dumper \@nodes if $verbose;
+
+
+# Execute command line to each of those systems
+print "command = $command\n" if $verbose;
+foreach my $node (@nodes) {
+	my $loginnode = $login . $node;
+	print "ssh $loginnode $command\n" if $verbose;
+	my $p = Net::Ping->new();
+	if ($p->ping("$node")) {
+		print "$node: \n";
+		system ("ssh", "$loginnode", "$command");
+	} else {
+		print "$node: DOWN\n";
+	}
+	print "\n";
+}
