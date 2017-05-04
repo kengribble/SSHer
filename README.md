@@ -2,16 +2,16 @@
 
 ssher - used to ssh to multiple systems
 
-### What is this repository for? ###
+## What is this repository for? ##
 
 * perl program called ssher
 
-### How do I get set up? ###
+## How do I get set up? ##
 
 * requires perl
 * download and ensure the #!/usr/local/perl is set to the correct directory for your system
 
-### Useage ###
+## Useage ##
 ssher useage: 
 	ssher [-v] -f file [-l login] command
 	   -v is verbose output
@@ -19,7 +19,7 @@ ssher useage:
 		command is the required command to send to the list of nodes with ssh
 	   -l is a login name - if not used the login name of the user executing the command is used
 
-## file example ##
+### file example ###
 This is an example file one might use with the -f file in ssher:
 
 ```
