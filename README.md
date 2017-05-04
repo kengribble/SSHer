@@ -22,12 +22,13 @@ ssher useage:
 ### file example ###
 This is an example file one might use with ssher:
 
----
+```
 my.host.com
 your.host.net
 192.168.1.123
 another.host.com
 10.0.2.37
+```
 
 ### TODO ###
 
