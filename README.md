@@ -37,7 +37,7 @@ another.host.com
 ```
 ## Examples ##
 
-This will run the w command on the systems listed in the file labmachines.list
+This will run the w command on the systems listed in the file labmachines.list:
 ```
 $ ssher -f labmachines.list w
 my.host.com:
