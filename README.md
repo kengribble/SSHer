@@ -19,8 +19,8 @@ ssher useage:
 		command is the required command to send to the list of nodes with ssh
 	   -l is a login name - if not used the login name of the user executing the command is used
 
-### file example ###
-This is an example file one might use with ssher:
+## file example ##
+This is an example file one might use with the -f file in ssher:
 
 ```
 my.host.com
