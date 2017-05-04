@@ -13,10 +13,14 @@ ssher - used to ssh to multiple systems
 
 ## Useage ##
 ssher useage: 
+
 	ssher [-v] -f file [-l login] command
+
 	   -v is verbose output
+
 	   -f is a file name with a required list of IP addresses or hostnames in that file
 		command is the required command to send to the list of nodes with ssh
+
 	   -l is a login name - if not used the login name of the user executing the command is used
 
 ### file example ###
